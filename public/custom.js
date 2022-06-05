@@ -3,17 +3,17 @@
   var menu = document.getElementById("menu");
   var close = document.getElementById("menu-close");
 
-  toggle.addEventListener("click", function(e) {
-    if (menu.classList.contains("open")) {
-      menu.classList.remove("open");
-    } else {
-      menu.classList.add("open");
-    }
-  });
+  // toggle.addEventListener("click", function(e) {
+  //   if (menu.classList.contains("open")) {
+  //     menu.classList.remove("open");
+  //   } else {
+  //     menu.classList.add("open");
+  //   }
+  // });
 
-  close.addEventListener("click", function(e) {
-    menu.classList.remove("open");
-  });
+  // close.addEventListener("click", function(e) {
+  //   menu.classList.remove("open");
+  // });
 
   // Close menu after click on smaller screens
   $(window).on("resize", function() {
@@ -49,7 +49,9 @@
   });
 
   $(".isotope-wrapper").each(function() {
+    console.log("wrapping...")
     var $isotope = $(".isotope-box", this);
+    console.log($isotope)
     var $filterCheckboxes = $('input[type="radio"]', this);
 
     var filter = function() {

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Isotope from '../isotope/Isotope'
 
 const cardsDefault = [
     {
@@ -67,10 +68,11 @@ function MyWork() {
                         mauris.
                     </span>
                 </div>
-       
+               
                 <div className="row">
                     <div className="isotope-wrapper">
-                        <form className="isotope-toolbar">
+                    <Isotope/>
+                        {/* <form className="isotope-toolbar">
                             <label>
                                 <input
                                     type="radio"
@@ -89,7 +91,7 @@ function MyWork() {
                                     <span>{f.label}</span>
                                 </label>
                             ))}
-                        </form>
+                        </form> */}
                         <div className="isotope-box">
                             {cardsDefault.map(card => (
                                 <div key={card.id} className="isotope-item" data-type={card.filter}>

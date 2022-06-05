@@ -6,22 +6,30 @@ import authorImage from '../../../assets/images/author-image.jpg'
 
  function Header() {
 
-    const refContainer = useRef(null);
+    const refOpen = useRef(null);
 
     useEffect(() => {
-        var test = refContainer.current
-        console.log(test)
+        //var test = refOpen.current
+        //console.log(test)
       });
 
-    const handleClick = event => {
-        console.log("Test");
+    function openMenu (event) {
+        var menu = refOpen.current.classList
+        if(menu.contains("open"))  menu.remove("open");
+        else menu.add("open");
     }
+
+    function closeMenu (event) {
+        var menu = refOpen.current.classList
+        menu.remove("open");
+    }
+        
    
     return(
         <div className="responsive-nav">
-                <i className="fa fa-bars" id="menu-toggle" ref={refContainer}></i>
-                <div id="menu" className="menu">
-                    <i className="fa fa-times" id="menu-close"></i>
+                <i className="fa fa-bars" id="menu-toggle" onClick={openMenu}></i>
+                <div id="menu" ref={refOpen} className="menu">
+                    <i className="fa fa-times" onClick={closeMenu} id="menu-close" ></i>
                     <div className="container">
                         <div className="image">
                             <a href="#"><img src={authorImage} alt="" /></a>

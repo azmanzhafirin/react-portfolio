@@ -1,4 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
+
+
+const filtersDefault = [
+  { label: "People" },
+  { label: "Nature" },
+  { label: "Animals" },
+];
 
 
 const IsotopeReact = () => {
@@ -6,6 +13,7 @@ const IsotopeReact = () => {
     const isotope = React.useRef()
     // store the filter keyword in a state
     const [filterKey, setFilterKey] = React.useState('*')
+  
   
     // initialize an Isotope object with configs
     React.useEffect(() => {
@@ -24,31 +32,57 @@ const IsotopeReact = () => {
         : isotope.current.arrange({filter: `.${filterKey}`})
     }, [filterKey])
   
-    const handleFilterKeyChange = key => () => setFilterKey(key)
+    const handleFilterKeyChange = (e, key) => {
+
+      setFilterKey(key)
+      console.log(e.currentTarget.checked)
+      
+      if(e.currentTarget.checked)
+      {
+        console.log("checked")
+        e.currentTarget.checked = false;
+      }
+    }
   
     return (
-      <section className='section'>
-        <ul>
-          <li onClick={handleFilterKeyChange('*')}>Show Both</li>
-          <li onClick={handleFilterKeyChange('vege')}>Show Veges</li>
-          <li onClick={handleFilterKeyChange('fruit')}>Show Fruits</li>
-        </ul>
+      <div>
+       
+
+          <form className="isotope-toolbar">
+            <label>
+              <input type="radio"  onClick={((e) => handleFilterKeyChange(e, '*'))} />
+              <span>All</span>
+            </label>
+              {
+                filtersDefault.map(f => (
+                  <label>
+                    <input key={`${f.label}_key`} type="radio" onClick={((e) => handleFilterKeyChange(e, f.label))} />
+                    <span>{f.label}</span>
+                  </label>
+                ))
+              }
+            
+
+          </form>
+
+        
+
         <hr />
         <ul className="filter-container">
-          <div className="filter-item vege">
-            <span>Cucumber</span>
+          <div className="filter-item People">
+            <span>Azman</span>
           </div>
-          <div className="filter-item fruit">
-            <span>Apple</span>
+          <div className="filter-item Nature">
+            <span>Hutan</span>
           </div>
-          <div className="filter-item fruit">
-            <span>Orange</span>
+          <div className="filter-item Animals">
+            <span>Gajah</span>
           </div>
-          <div className="filter-item fruit vege">
-            <span>Tomato</span>
+          <div className="filter-item Nature People">
+            <span>Badak Air</span>
           </div>
         </ul>
-      </section>
+      </div>
     )
   }
 
